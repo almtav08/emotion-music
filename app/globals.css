@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes reveal {
+  0% {
+    transform: translate(0, 100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
   }
 }
 
@@ -20,8 +23,68 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.landing-text {
+  display: inline-block;
+  animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.3s;
+  animation-fill-mode: backwards;
+}
+
+.landing-subtext {
+  display: inline-block;
+  animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) 1.2s;
+  animation-fill-mode: backwards;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "aside main"
+    "reader reader";
+  grid-template-columns: 20rem 1fr;
+  grid-template-rows: 1fr auto;
+}
+
+.music-page::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+/* Track */
+.music-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.music-page::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+.music-page::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+.playlist-card::-webkit-scrollbar {
+  scroll-margin: 0.4rem;
+  height: 0.4rem;
+}
+
+/* Track */
+.playlist-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.playlist-card::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+.playlist-card::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
